@@ -29,10 +29,15 @@ body {
  */
 
  .container{
+  display: flex;
   background-color: #b38600;
   align-items: center;
   width: 90%;
-  /* align-content: center; */
+  margin-right: 12em;
+  justify-content: space-around;
+
  }
+
+ 
 
 
