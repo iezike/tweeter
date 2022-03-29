@@ -16,13 +16,23 @@ html {
 
 body {
   color: #545149;
-  background-color: #f4f1ec;
   font-size: 24px;
   font-family: 'Source Sans Pro', sans-serif;
+  background-color: #b38600;
+  background-image: url("https://www.transparenttextures.com/patterns/cardboard.png");
+
 }
 
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+ .container{
+  background-color: #b38600;
+  align-items: center;
+  width: 90%;
+  /* align-content: center; */
+ }
+
 

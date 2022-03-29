@@ -4,13 +4,16 @@ nav {
   color: #FFFFFF;
   background-color: #4056A1;
   font-size: 24px;
-  height: 120px; 
+  height: 100px; 
   width: 100%;
   font-family: 'Source Sans Pro', sans-serif;
   align-items: center;
+  position:absolute;
+  top: 0;
 }
 
 nav span {
+  font-size: 50px;
   margin-left: 1.5em;
   font-family: 'Bungee', cursive;
 }
