@@ -92,8 +92,9 @@ $(document).ready( () => {
     $textarea = $(this).closest("form").find("#tweet-text"); 
     const $data = $textarea.serialize();
     $text = $textarea.val().trim();
-    
+    $counter = $(this).closest("form").find(".counter");
     $message = $(this).closest("form").find("#message");
+    
     if($text=== "" || $text === null) {
       return alert("Your message is empty!")
     } else if ($data.length > 140) {
@@ -110,6 +111,8 @@ $(document).ready( () => {
       .then(function (res) {
         loadTweets();
       });
+      $counter.text("140");
+      $textarea.val("").focus();
     }
   });
 
