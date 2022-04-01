@@ -30,6 +30,9 @@ const data = [
     }
   ]
 
+// Format time
+const tweetTime = timeago.format(data.created_at);
+
 const createTweetElement = function(tweetData) {
   //create the structure of tweet to be included in the html (using previous html article)
 const $tweet = (`
@@ -47,7 +50,7 @@ const $tweet = (`
     <p>${tweetData.content.text}</p>
   </div>
   <div class="time-reactions">
-    <p>${timeago.format(tweetData.created_at)}</p>
+    <p>${tweetTime}</p>
     <div class="icons">
       <i class="fas fa-flag"></i>
       <i class="fas fa-retweet"></i>
@@ -59,7 +62,6 @@ const $tweet = (`
   //return the structure to append to html
   return $tweet;
 }
-
 
 const renderTweets = (tweets) => {
   //clear the container before to read all tweets
@@ -74,7 +76,6 @@ const renderTweets = (tweets) => {
     // takes return value and appends it to the tweets container
     $('#tweets-container').prepend($tweet);
   }
-
 }
 
 
@@ -87,39 +88,42 @@ $(document).ready( () => {
     //prevent to change the page
     event.preventDefault();
 
-    //get data from the form
-    $textarea = $(this).closest("form").find("#tweet-text");
+    //get data from the form and serialize
+    $textarea = $(this).closest("form").find("#tweet-text"); 
     const $data = $textarea.serialize();
-
-    // //get the text (removed spaces) and its lenght to validate
-    // const $text = $textarea.val().trim();
-
-    const settings = {
-      method: 'POST',
-      data: $data
-    };
-    const url = "/tweets/";
-
-    $.ajax(url, settings)
-    .then(function (res) {
-       loadTweets();
-    });
+    $text = $textarea.val().trim();
+    
+    $message = $(this).closest("form").find("#message");
+    if($text=== "" || $text === null) {
+      return alert("Your message is empty!")
+    } else if ($data.length > 140) {
+      return alert("Message should not be more than 140 character!");
+    } else {
+      //setting up parameters for post request
+      const settings = {
+        method: 'POST',
+        data: $data
+      };
+      const url = "/tweets/";
+      //Ajax post request
+      $.ajax(url, settings)
+      .then(function (res) {
+        loadTweets();
+      });
+    }
   });
 
-  // setting up parameters
+  // setting up parameters for get request
   const setting = {
     method: "Get"
   }
   const url = "/tweets/";
-
+  // Get Ajax request
   const loadTweets = function() {
-    // Get Ajax request
     $.ajax(url, setting)
       .then(function(res) {
-        renderTweets(res)
+        renderTweets(res);
       })
-  }
-
-
+  };
 
 });

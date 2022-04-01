@@ -38,3 +38,7 @@
   cursor: pointer;
   padding: 5px 15px;
 }
+
+.new-tweet  form  div {
+  margin-top: 1px;
+}
