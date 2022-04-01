@@ -61,9 +61,7 @@ const $tweet = (`
 }
 
 
-
 const renderTweets = (tweets) => {
-
   //clear the container before to read all tweets
   $("#tweets-container").empty();
 
@@ -79,6 +77,46 @@ const renderTweets = (tweets) => {
 
 }
 
+
+
+
 $(document).ready( () => {
-  renderTweets(data);
+
+  //event listener on submit button
+  $("#tweet-form").submit( function(event) {
+    //prevent to change the page
+    event.preventDefault();
+
+    //get data from the form
+    $textarea = $(this).closest("form").find("#tweet-text");
+    const $data = $textarea.serialize();
+
+    // //get the text (removed spaces) and its lenght to validate
+    // const $text = $textarea.val().trim();
+
+    const settings = {
+      method: 'POST',
+      data: $data
+    };
+    const url = "/tweets/";
+
+    $.ajax(url, settings)
+    .then(function (res) {
+       loadTweets();
+    });
+  });
+
+  const setting = {
+    method: "Get"
+  }
+  const loadTweets = function() {
+    // Get Ajax request
+    $.ajax(url, setting)
+      .then(function(res) {
+        renderTweets(res)
+      })
+  }
+
+
+
 });
