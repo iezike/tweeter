@@ -47,7 +47,7 @@ const $tweet = (`
     <p>${tweetData.content.text}</p>
   </div>
   <div class="time-reactions">
-    <p>${new Date(tweetData.created_at)}</p>
+    <p>${timeago.format(tweetData.created_at)}</p>
     <div class="icons">
       <i class="fas fa-flag"></i>
       <i class="fas fa-retweet"></i>
@@ -106,9 +106,12 @@ $(document).ready( () => {
     });
   });
 
+  // setting up parameters
   const setting = {
     method: "Get"
   }
+  const url = "/tweets/";
+
   const loadTweets = function() {
     // Get Ajax request
     $.ajax(url, setting)
