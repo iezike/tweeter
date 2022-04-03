@@ -49,4 +49,11 @@ margin: 2rem 0 2rem 0;
   color: #473e0F;
 }
 
+@media (max-width: 560px) {
+  .container {
+    align-items: center;
+    margin-left: 3px;
+  }
+}
+
 

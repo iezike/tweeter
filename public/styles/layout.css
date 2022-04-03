@@ -28,9 +28,9 @@ body {
  */
 
  .container{
-   margin-top: 20em;
-  height: 200px;
+  margin-top: 20em;
   margin: 0 10% 2rem;
+  width: 500px;
 
  }
 

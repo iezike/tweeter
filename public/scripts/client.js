@@ -4,31 +4,8 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// Fake data taken from initial-tweets.json
-const data = [
-    // {
-    //   "user": {
-    //     "name": "Newton",
-    //     "avatars": "https://i.imgur.com/73hZDYK.png"
-    //     ,
-    //     "handle": "@SirIsaac"
-    //   },
-    //   "content": {
-    //     "text": "If I have seen further it is by standing on the shoulders of giants"
-    //   },
-    //   "created_at": 1461116232227
-    // },
-    // {
-    //   "user": {
-    //     "name": "Descartes",
-    //     "avatars": "https://i.imgur.com/nlhLi3I.png",
-    //     "handle": "@rd" },
-    //   "content": {
-    //     "text": "Je pense , donc je suis"
-    //   },
-    //   "created_at": 1461113959088
-    // }
-  ]
+// Intialize data to be taken from initial-tweets.json
+const data = [];
 
 // Format time
 const tweetTime = timeago.format(data.created_at);
@@ -79,8 +56,6 @@ const renderTweets = (tweets) => {
 }
 
 
-
-
 $(document).ready( () => {
 
   //event listener on submit button
@@ -95,7 +70,7 @@ $(document).ready( () => {
     $text = $textarea.val().trim();
     $counter = $(this).closest("form").find(".counter");
     $message = $(this).closest("form").find("#message");
-
+    //if conditions create control of input text and correspoding error message
     if($text=== "" || $text === null) {
       $message.slideUp();
       setTimeout(() => {
@@ -104,8 +79,6 @@ $(document).ready( () => {
       setTimeout(() => {
         $message.slideDown();
       }, 1500);
-      // $textarea.focus(); 
-      // return alert("Your message is empty!") 
     } else if ($data.length > 140) {
       $message.slideUp();
       setTimeout(() => {
@@ -115,14 +88,8 @@ $(document).ready( () => {
         $message.slideDown();
       }, 1500);
     } else {
-      //setting up parameters for post request
-      const settings = {
-        method: 'POST',
-        data: $data
-      };
-      const url = "/tweets/";
       //Ajax post request
-      $.ajax(url, settings)
+      $.ajax("/tweets/", { method: 'POST', data: $data })
       .then(function (res) {
         loadTweets();
       });
@@ -132,17 +99,11 @@ $(document).ready( () => {
     }
   });
 
-  // setting up parameters for get request
-  const setting = {
-    method: "Get"
-  }
-  const url = "/tweets/";
-  // Get Ajax request
+  // Ajax Get request
   const loadTweets = function() {
-    $.ajax(url, setting)
+    $.ajax("/tweets/", { method: "Get" })
       .then(function(res) {
         renderTweets(res);
       })
   };
-
 });

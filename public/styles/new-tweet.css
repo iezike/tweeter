@@ -3,6 +3,9 @@
   padding: 5px 0;
 }
 
+.counter.error {
+  color: hsl(16, 91%, 49%);
+}
 
 .new-tweet form {
   display: flex;
@@ -11,11 +14,15 @@
 }
 
 .new-tweet form textarea {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
   border: none;
   font-size: 30px;
   border-bottom: 2px solid black;
   background-color: wheat;
   background-image: url("https://www.transparenttextures.com/patterns/cardboard.png");
+ 
 }
 
 .button-counter {
@@ -39,11 +46,13 @@
 }
 
 #message{
-  color: rgb(117, 41, 41);
+  color: hsl(16, 91%, 49%);;
 }
 
  @media (min-width: 1024px) {
-.new-tweet {
-  margin-top: 10em;
-} }
+  .new-tweet {
+    margin-top: 10em;
+    width: 100%;
+  } 
+}
 
