@@ -1,26 +1,21 @@
 
-.new-tweet {
-  /* background: yellow; */
+ .new-tweet {
   padding: 5px 0;
 }
 
-.error_msg {
-  color: red;
-  text-transform: uppercase;
-}
 
 .new-tweet form {
   display: flex;
   flex-direction: column;
-}
-
-.new-tweet form {
   font-weight: bold;
 }
 
 .new-tweet form textarea {
   border: none;
+  font-size: 30px;
   border-bottom: 2px solid black;
+  background-color: wheat;
+  background-image: url("https://www.transparenttextures.com/patterns/cardboard.png");
 }
 
 .button-counter {
@@ -40,5 +35,15 @@
 }
 
 .new-tweet  form  div {
-  margin-top: 5px;
+  margin-top: 12px;
 }
+
+#message{
+  color: rgb(117, 41, 41);
+}
+
+ @media (min-width: 1024px) {
+.new-tweet {
+  margin-top: 10em;
+} }
+

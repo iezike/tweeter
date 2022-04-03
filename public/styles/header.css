@@ -7,5 +7,14 @@ header {
   justify-content: center;
   flex-direction: column;
   margin-top: 3.5em;
-
+  background-color: #daaa0dc4;
 }
+
+ @media (min-width: 1024px) {
+  header {
+    height: 380px;
+    width: 40%;
+    margin-top: 10em;
+    margin-left: 3em;
+  } 
+}  

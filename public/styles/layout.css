@@ -18,9 +18,8 @@ body {
   color: #545149;
   font-size: 24px;
   font-family: 'Source Sans Pro', sans-serif;
-  background-color: #b38600;
+  background-color: wheat;
   background-image: url("https://www.transparenttextures.com/patterns/cardboard.png");
-
 }
 
 
@@ -29,11 +28,25 @@ body {
  */
 
  .container{
+   margin-top: 20em;
   height: 200px;
-  margin: 0 10% 2rem 10%;
+  margin: 0 10% 2rem;
 
  }
 
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    flex-direction: row;
+  }
+} 
+ 
+@media (max-width: 560px) {
+  body {
+    font-size: 15px;
+  }
+} 
  
 
 
