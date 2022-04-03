@@ -50,7 +50,7 @@ const $tweet = (`
     <p>${tweetData.content.text}</p>
   </div>
   <div class="time-reactions">
-    <p>${tweetTime}</p>
+    <p>${timeago.format(tweetData.created_at)}</p>
     <div class="icons">
       <i class="fas fa-flag"></i>
       <i class="fas fa-retweet"></i>
@@ -85,6 +85,7 @@ $(document).ready( () => {
 
   //event listener on submit button
   $("#tweet-form").submit( function(event) {
+
     //prevent to change the page
     event.preventDefault();
 
@@ -94,11 +95,25 @@ $(document).ready( () => {
     $text = $textarea.val().trim();
     $counter = $(this).closest("form").find(".counter");
     $message = $(this).closest("form").find("#message");
-    
+
     if($text=== "" || $text === null) {
-      return alert("Your message is empty!")
+      $message.slideUp();
+      setTimeout(() => {
+        $message.text("Your message is empty!").toggle(true);
+      }, 1100);
+      setTimeout(() => {
+        $message.slideDown();
+      }, 1500);
+      // $textarea.focus(); 
+      // return alert("Your message is empty!") 
     } else if ($data.length > 140) {
-      return alert("Message should not be more than 140 character!");
+      $message.slideUp();
+      setTimeout(() => {
+        $message.text("Message should not be more than 140 character!").toggle(false);
+      }, 1200);
+      setTimeout(() => {
+        $message.slideDown();
+      }, 1500);
     } else {
       //setting up parameters for post request
       const settings = {
@@ -111,6 +126,7 @@ $(document).ready( () => {
       .then(function (res) {
         loadTweets();
       });
+      $message.text("").toggle(false);
       $counter.text("140");
       $textarea.val("").focus();
     }
