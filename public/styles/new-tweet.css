@@ -56,3 +56,6 @@
   } 
 }
 
+.new-tweet form textarea { 
+  margin-top: 25px;
+}

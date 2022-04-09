@@ -1,14 +1,3 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
-// Intialize data to be taken from initial-tweets.json
-const data = [];
-
-// Format time
-const tweetTime = timeago.format(data.created_at);
 
 const createTweetElement = function(tweetData) {
   //create the structure of tweet to be included in the html (using previous html article)
@@ -42,22 +31,27 @@ const $tweet = (`
 
 const renderTweets = (tweets) => {
   //clear the container before to read all tweets
-  $("#tweets-container").empty();
+  $('#tweets-container').empty()
 
   // loops through tweets from newer to older
   for (let tweet of tweets) {
-
     // calls createTweetElement for each tweet
     const $tweet = createTweetElement(tweet);
-
     // takes return value and appends it to the tweets container
     $('#tweets-container').prepend($tweet);
   }
 }
 
+  // Ajax Get request
+  const loadTweets = function() {
+    $.ajax("/tweets/", { method: "Get" })
+      .then(function(res) {
+        renderTweets(res);
+      })
+  };
 
 $(document).ready( () => {
-
+  loadTweets();
   //event listener on submit button
   $("#tweet-form").submit( function(event) {
 
@@ -67,11 +61,11 @@ $(document).ready( () => {
     //get data from the form and serialize
     $textarea = $(this).closest("form").find("#tweet-text"); 
     const $data = $textarea.serialize();
-    $text = $textarea.val().trim();
+    $text = $textarea.val().trim(); //retrive tweet text for counter checks
     $counter = $(this).closest("form").find(".counter");
     $message = $(this).closest("form").find("#message");
     //if conditions create control of input text and correspoding error message
-    if($text=== "" || $text === null) {
+    if($text === "" || $text === null) {
       $message.slideUp();
       setTimeout(() => {
         $message.text("Your message is empty!").toggle(true);
@@ -79,14 +73,18 @@ $(document).ready( () => {
       setTimeout(() => {
         $message.slideDown();
       }, 1500);
-    } else if ($data.length > 140) {
+    } 
+    else if ($text.length > 140) {
+      $message.text("").toggle(false);
       $message.slideUp();
       setTimeout(() => {
-        $message.text("Message should not be more than 140 character!").toggle(false);
+        $message.text("Message should not be more than 140 character!").toggle(true);
+        $textarea.val("").focus();
       }, 1200);
       setTimeout(() => {
         $message.slideDown();
       }, 1500);
+      $counter.text("140");
     } else {
       //Ajax post request
       $.ajax("/tweets/", { method: 'POST', data: $data })
@@ -98,12 +96,4 @@ $(document).ready( () => {
       $textarea.val("").focus();
     }
   });
-
-  // Ajax Get request
-  const loadTweets = function() {
-    $.ajax("/tweets/", { method: "Get" })
-      .then(function(res) {
-        renderTweets(res);
-      })
-  };
 });

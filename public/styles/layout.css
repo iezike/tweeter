@@ -30,8 +30,8 @@ body {
  .container{
   margin-top: 20em;
   margin: 0 10% 2rem;
-  width: 500px;
-
+  width: 800px;
+  align-self : center;
  }
 
 
@@ -48,5 +48,11 @@ body {
   }
 } 
  
+@media (max-width: 560px) {
+  .container{
+    width: 530px;
+    align-self : center;
+   }
+}
 
 

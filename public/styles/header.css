@@ -17,4 +17,11 @@ header {
     margin-top: 10em;
     margin-left: 3em;
   } 
-}  
+} 
+
+@media (max-width: 560px) {
+  .Avatar {
+    font-size: 15px;
+    margin-top: 25px;
+  }
+} 

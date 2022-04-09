@@ -1,4 +1,3 @@
-
 nav {
   display: flex;
   justify-content: space-between;
@@ -21,7 +20,7 @@ nav span {
   font-family: 'Bungee', cursive;
 }
 
-.Tweetaction {
+.Tweet-action {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -37,7 +36,7 @@ nav span {
     font-size: 25px;
     margin-left: 8px;
    } 
-  .Tweetaction {
+  .Tweet-action {
     font-size: 15px;
   }
 } 
