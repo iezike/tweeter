@@ -7,6 +7,10 @@ margin: 2rem 0 2rem 0;
   margin: 2rem 0 0 0;
 }
 
+.tweet-component:hover {
+  cursor: pointer;
+  box-shadow: 5px 10px  #473e0F;
+}
 
 .image-username-refkey {
   display: flex;

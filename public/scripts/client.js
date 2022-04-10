@@ -75,16 +75,13 @@ $(document).ready( () => {
       }, 1500);
     } 
     else if ($text.length > 140) {
-      $message.text("").toggle(false);
       $message.slideUp();
       setTimeout(() => {
-        $message.text("Message should not be more than 140 character!").toggle(true);
-        $textarea.val("").focus();
+        $message.text("Message should not be more than 140 character!").toggle(false);
       }, 1200);
       setTimeout(() => {
         $message.slideDown();
       }, 1500);
-      $counter.text("140");
     } else {
       //Ajax post request
       $.ajax("/tweets/", { method: 'POST', data: $data })
